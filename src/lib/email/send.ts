@@ -10,6 +10,39 @@ export interface SendResult {
   emailId?: string;
 }
 
+/** Fetches the draft of the given type, generating and saving it on demand if it doesn't exist yet. */
+export async function ensureDraft(params: {
+  candidateId: string;
+  roleApplied: "pm" | "spm";
+  type: "invite" | "decline";
+  score: ScoreResult;
+}): Promise<{ subject: string; bodyTemplate: string }> {
+  const db = supabaseAdmin();
+  const { data: draftRow } = await db
+    .from("drafts")
+    .select("subject, body_template")
+    .eq("candidate_id", params.candidateId)
+    .eq("type", params.type)
+    .maybeSingle();
+
+  if (draftRow) {
+    return { subject: draftRow.subject, bodyTemplate: draftRow.body_template };
+  }
+
+  const generated = await generateDraft(params.type, params.roleApplied, params.score);
+  await db.from("drafts").upsert(
+    {
+      candidate_id: params.candidateId,
+      type: params.type,
+      subject: generated.subject,
+      body_template: generated.bodyTemplate,
+      brief_md: generated.briefMd,
+    },
+    { onConflict: "candidate_id,type" }
+  );
+  return { subject: generated.subject, bodyTemplate: generated.bodyTemplate };
+}
+
 /**
  * The one guarded send path, shared by single-card buttons and the batch
  * decline action. Order matters: no email call happens before a verified
@@ -61,33 +94,12 @@ export async function guardedSend(params: {
   }
 
   // 4. Ensure a draft of the needed type exists; generate on demand.
-  const { data: draftRow } = await db
-    .from("drafts")
-    .select("subject, body_template, brief_md")
-    .eq("candidate_id", candidateId)
-    .eq("type", type)
-    .maybeSingle();
-
-  let subject: string;
-  let bodyTemplate: string;
-  if (draftRow) {
-    subject = draftRow.subject;
-    bodyTemplate = draftRow.body_template;
-  } else {
-    const generated = await generateDraft(type, params.roleApplied, params.score);
-    subject = generated.subject;
-    bodyTemplate = generated.bodyTemplate;
-    await db.from("drafts").upsert(
-      {
-        candidate_id: candidateId,
-        type,
-        subject,
-        body_template: bodyTemplate,
-        brief_md: generated.briefMd,
-      },
-      { onConflict: "candidate_id,type" }
-    );
-  }
+  const { subject, bodyTemplate } = await ensureDraft({
+    candidateId,
+    roleApplied: params.roleApplied,
+    type,
+    score: params.score,
+  });
 
   const firstName = params.candidateName.split(/\s+/)[0] || params.candidateName;
   const body = bodyTemplate.replaceAll("{{first_name}}", firstName);

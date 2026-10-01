@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { CandidateRow } from "@/lib/types";
 import { ChevronDownIcon, CheckCircleIcon, PauseCircleIcon, XCircleIcon, SparkleIcon } from "./icons";
+import { SendPreviewModal } from "./SendPreviewModal";
 
 const BAND_LABEL: Record<string, string> = {
   PRIORITY_SHORTLIST: "Priority Shortlist",
@@ -71,6 +72,10 @@ function CandidateRowItem({
   onChanged: () => void;
 }) {
   const [sending, setSending] = useState<string | null>(null);
+  const [loadingPreview, setLoadingPreview] = useState<"invite" | "decline" | null>(null);
+  const [preview, setPreview] = useState<{ type: "invite" | "decline"; subject: string; body: string } | null>(
+    null
+  );
   const score = candidate.scores.find((s) => s.rubric_variant === candidate.role_applied) ?? candidate.scores[0];
   const crossScore = candidate.scores.find((s) => s.rubric_variant !== candidate.role_applied);
   const inviteSent = candidate.emails.some((e) => e.type === "invite" && e.status === "sent");
@@ -92,6 +97,32 @@ function CandidateRowItem({
     } finally {
       setSending(null);
     }
+  }
+
+  /** Advance/decline open a preview of the personalized email first; Hold sends immediately (no email). */
+  async function requestSend(type: "invite" | "decline") {
+    setLoadingPreview(type);
+    try {
+      const res = await fetch("/api/draft-preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ candidateId: candidate.id, type }),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        alert(`Couldn't load the draft: ${json.error ?? "unknown error"}`);
+        return;
+      }
+      setPreview({ type, subject: json.subject, body: json.body });
+    } finally {
+      setLoadingPreview(null);
+    }
+  }
+
+  async function confirmSend() {
+    if (!preview) return;
+    await act(preview.type === "invite" ? "advance" : "decline");
+    setPreview(null);
   }
 
   if (!score) {
@@ -128,8 +159,8 @@ function CandidateRowItem({
           <div className="flex items-center justify-end gap-1.5" onClick={(e) => e.stopPropagation()}>
             <ActionButton
               title={inviteSent ? "Invite sent" : "Advance & send invite"}
-              onClick={() => act("advance")}
-              disabled={inviteSent || sending !== null}
+              onClick={() => requestSend("invite")}
+              disabled={inviteSent || sending !== null || loadingPreview !== null}
               active={inviteSent}
               colorClass="text-emerald-600 hover:bg-emerald-50"
               activeClass="bg-emerald-100 text-emerald-700"
@@ -139,25 +170,38 @@ function CandidateRowItem({
             <ActionButton
               title="Hold"
               onClick={() => act("hold")}
-              disabled={sending !== null}
+              disabled={sending !== null || loadingPreview !== null}
               colorClass="text-amber-600 hover:bg-amber-50"
             >
               <PauseCircleIcon className="w-5 h-5" />
             </ActionButton>
             <ActionButton
               title={declineSent ? "Decline sent" : "Decline & send"}
-              onClick={() => act("decline")}
-              disabled={declineSent || sending !== null}
+              onClick={() => requestSend("decline")}
+              disabled={declineSent || sending !== null || loadingPreview !== null}
               active={declineSent}
               colorClass="text-stone-500 hover:bg-stone-100"
               activeClass="bg-stone-200 text-stone-700"
             >
               <XCircleIcon className="w-5 h-5" />
             </ActionButton>
-            <ChevronDownIcon className={`w-4 h-4 text-stone-400 transition ${expanded ? "rotate-180" : ""}`} />
+            <button
+              onClick={onToggle}
+              className="flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium text-navy-700 hover:bg-navy-50"
+            >
+              View details
+              <ChevronDownIcon className={`w-4 h-4 transition ${expanded ? "rotate-180" : ""}`} />
+            </button>
           </div>
         </td>
       </tr>
+      {loadingPreview && (
+        <tr>
+          <td colSpan={5} className="px-6 py-2 text-xs text-stone-400">
+            Loading the {loadingPreview} email draft…
+          </td>
+        </tr>
+      )}
       {expanded && (
         <tr className="border-t border-stone-100 bg-stone-50/70">
           <td colSpan={5} className="px-6 py-5">
@@ -217,6 +261,17 @@ function CandidateRowItem({
             </div>
           </td>
         </tr>
+      )}
+      {preview && (
+        <SendPreviewModal
+          candidateName={candidate.name}
+          type={preview.type}
+          subject={preview.subject}
+          body={preview.body}
+          sending={sending !== null}
+          onCancel={() => setPreview(null)}
+          onConfirm={confirmSend}
+        />
       )}
     </>
   );
