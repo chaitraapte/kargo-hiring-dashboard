@@ -39,14 +39,32 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ stage: "storage", error: uploadError.message }, { status: 500 });
     }
 
-    // Dedupe on email: update the existing candidate row on re-upload.
+    // Dedupe on email: update the existing candidate row on re-upload — but only
+    // when the extracted name also matches. A shared/placeholder address (e.g.
+    // a team inbox, or an injected watermark email) can otherwise cause two
+    // different people to silently collapse into one row. When the email
+    // collides but the name clearly doesn't, disambiguate instead of merging.
+    let candidateEmail = contact.email ?? `unknown-${Date.now()}@no-email.invalid`;
+    if (contact.email) {
+      const { data: existing } = await db
+        .from("candidates")
+        .select("name")
+        .eq("email", contact.email)
+        .maybeSingle();
+      if (existing && existing.name.trim().toLowerCase() !== contact.name.trim().toLowerCase()) {
+        const [local, domain] = contact.email.split("@");
+        const slug = contact.name.toLowerCase().replace(/[^a-z0-9]+/g, "");
+        candidateEmail = `${local}+${slug}@${domain}`;
+      }
+    }
+
     const { data: candidate, error: upsertError } = await db
       .from("candidates")
       .upsert(
         {
           role_applied: roleApplied,
           name: contact.name,
-          email: contact.email ?? `unknown-${Date.now()}@no-email.invalid`,
+          email: candidateEmail,
           phone: contact.phone,
           cv_path: storagePath,
           cv_text_redacted: redacted,
