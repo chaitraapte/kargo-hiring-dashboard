@@ -13,9 +13,9 @@ const BAND_LABEL: Record<string, string> = {
 
 const BAND_PILL: Record<string, string> = {
   PRIORITY_SHORTLIST: "bg-emerald-100 text-emerald-800",
-  SHORTLIST: "bg-blue-100 text-blue-800",
+  SHORTLIST: "bg-navy-100 text-navy-800",
   HOLD: "bg-amber-100 text-amber-800",
-  DECLINE_QUEUE: "bg-zinc-200 text-zinc-700",
+  DECLINE_QUEUE: "bg-stone-200 text-stone-700",
 };
 
 export function CandidateTable({
@@ -28,14 +28,14 @@ export function CandidateTable({
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   if (candidates.length === 0) {
-    return <p className="px-6 py-10 text-center text-sm text-zinc-400">No candidates yet for this role.</p>;
+    return <p className="px-6 py-10 text-center text-sm text-stone-400">No candidates yet for this role.</p>;
   }
 
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[640px] text-left text-sm">
         <thead>
-          <tr className="text-xs uppercase tracking-wide text-zinc-400">
+          <tr className="text-xs uppercase tracking-wide text-stone-400">
             <th className="px-6 py-3 font-medium">Candidate</th>
             <th className="px-3 py-3 font-medium">Band</th>
             <th className="px-3 py-3 font-medium">Score</th>
@@ -96,8 +96,8 @@ function CandidateRowItem({
 
   if (!score) {
     return (
-      <tr className="border-t border-zinc-100">
-        <td className="px-6 py-4 font-medium text-zinc-800">{candidate.name}</td>
+      <tr className="border-t border-stone-100">
+        <td className="px-6 py-4 font-medium text-stone-800">{candidate.name}</td>
         <td colSpan={4} className="px-3 py-4 text-amber-600">
           Needs review — scoring did not complete.
         </td>
@@ -110,20 +110,20 @@ function CandidateRowItem({
   return (
     <>
       <tr
-        className="cursor-pointer border-t border-zinc-100 transition hover:bg-zinc-50"
+        className="cursor-pointer border-t border-stone-100 transition hover:bg-stone-50"
         onClick={onToggle}
       >
         <td className="px-6 py-4">
-          <p className="font-medium text-zinc-900">{candidate.name}</p>
-          <p className="text-xs text-zinc-400">{candidate.email}</p>
+          <p className="font-medium text-navy-950">{candidate.name}</p>
+          <p className="text-xs text-stone-400">{candidate.email}</p>
         </td>
         <td className="px-3 py-4">
           <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${BAND_PILL[score.band]}`}>
             {BAND_LABEL[score.band]}
           </span>
         </td>
-        <td className="px-3 py-4 font-mono text-zinc-700">{score.total.toFixed(1)}</td>
-        <td className="hidden max-w-xs truncate px-3 py-4 text-zinc-500 md:table-cell">{score.key_insight}</td>
+        <td className="px-3 py-4 font-mono text-navy-900">{score.total.toFixed(1)}</td>
+        <td className="hidden max-w-xs truncate px-3 py-4 text-stone-500 md:table-cell">{score.key_insight}</td>
         <td className="px-6 py-4">
           <div className="flex items-center justify-end gap-1.5" onClick={(e) => e.stopPropagation()}>
             <ActionButton
@@ -149,45 +149,45 @@ function CandidateRowItem({
               onClick={() => act("decline")}
               disabled={declineSent || sending !== null}
               active={declineSent}
-              colorClass="text-zinc-500 hover:bg-zinc-100"
-              activeClass="bg-zinc-200 text-zinc-700"
+              colorClass="text-stone-500 hover:bg-stone-100"
+              activeClass="bg-stone-200 text-stone-700"
             >
               <XCircleIcon className="w-5 h-5" />
             </ActionButton>
-            <ChevronDownIcon className={`w-4 h-4 text-zinc-400 transition ${expanded ? "rotate-180" : ""}`} />
+            <ChevronDownIcon className={`w-4 h-4 text-stone-400 transition ${expanded ? "rotate-180" : ""}`} />
           </div>
         </td>
       </tr>
       {expanded && (
-        <tr className="border-t border-zinc-100 bg-zinc-50/60">
+        <tr className="border-t border-stone-100 bg-stone-50/70">
           <td colSpan={5} className="px-6 py-5">
             <div className="space-y-4 text-sm">
               {score.key_insight && (
-                <div className="flex items-start gap-2 rounded-2xl border border-indigo-200 bg-indigo-50 px-4 py-3 text-indigo-900">
-                  <SparkleIcon className="mt-0.5 w-4 h-4 shrink-0 text-indigo-500" />
+                <div className="flex items-start gap-2 rounded-2xl border border-navy-200 bg-navy-50 px-4 py-3 text-navy-900">
+                  <SparkleIcon className="mt-0.5 w-4 h-4 shrink-0 text-navy-500" />
                   <p>{score.key_insight}</p>
                 </div>
               )}
               {crossScore && (
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-stone-500">
                   Cross-scored on {crossScore.rubric_variant.toUpperCase()} rubric: {crossScore.total.toFixed(1)}/100
                 </p>
               )}
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
                 {(["c1", "c2", "c3", "c4", "c5"] as const).map((k) => (
                   <div key={k} className="rounded-2xl bg-white p-3 shadow-sm">
-                    <p className="text-xs font-medium uppercase text-zinc-400">{k}</p>
-                    <p className="font-medium text-zinc-800">
-                      {score[k]}/4 <span className="text-zinc-400">({score.confidence[k]})</span>
+                    <p className="text-xs font-medium uppercase text-stone-400">{k}</p>
+                    <p className="font-medium text-stone-800">
+                      {score[k]}/4 <span className="text-stone-400">({score.confidence[k]})</span>
                     </p>
-                    <p className="mt-1 line-clamp-3 text-xs italic text-zinc-500">&ldquo;{score.quotes[k]}&rdquo;</p>
+                    <p className="mt-1 line-clamp-3 text-xs italic text-stone-500">&ldquo;{score.quotes[k]}&rdquo;</p>
                   </div>
                 ))}
               </div>
               {score.hidden_value.length > 0 && (
                 <div>
-                  <p className="font-medium text-zinc-700">Hidden value</p>
-                  <ul className="list-inside list-disc text-zinc-500">
+                  <p className="font-medium text-navy-900">Hidden value</p>
+                  <ul className="list-inside list-disc text-stone-500">
                     {score.hidden_value.map((h, i) => (
                       <li key={i}>{h}</li>
                     ))}
@@ -196,22 +196,22 @@ function CandidateRowItem({
               )}
               {score.probes.length > 0 && (
                 <div>
-                  <p className="font-medium text-zinc-700">Top probes</p>
-                  <ul className="list-inside list-disc text-zinc-500">
+                  <p className="font-medium text-navy-900">Top probes</p>
+                  <ul className="list-inside list-disc text-stone-500">
                     {score.probes.map((p, i) => (
                       <li key={i}>{p}</li>
                     ))}
                   </ul>
                 </div>
               )}
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-stone-400">
                 G1: {score.gates.g1_status} — {score.gates.g1_reason}. G2: {score.gates.g2.flag}
               </p>
               {activeDraft && (
-                <div className="rounded-2xl border border-zinc-200 bg-white p-3">
-                  <p className="font-medium text-zinc-700">Draft ({activeDraft.type})</p>
-                  <p className="font-mono text-xs text-zinc-800">{activeDraft.subject}</p>
-                  <p className="mt-1 whitespace-pre-wrap text-xs text-zinc-500">{activeDraft.body_template}</p>
+                <div className="rounded-2xl border border-stone-200 bg-white p-3">
+                  <p className="font-medium text-navy-900">Draft ({activeDraft.type})</p>
+                  <p className="font-mono text-xs text-stone-800">{activeDraft.subject}</p>
+                  <p className="mt-1 whitespace-pre-wrap text-xs text-stone-500">{activeDraft.body_template}</p>
                 </div>
               )}
             </div>

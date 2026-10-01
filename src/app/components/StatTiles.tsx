@@ -3,9 +3,9 @@ import type { Stats } from "@/lib/types";
 const BAND_ORDER = ["PRIORITY_SHORTLIST", "SHORTLIST", "HOLD", "DECLINE_QUEUE"] as const;
 const BAND_BAR_COLOR: Record<string, string> = {
   PRIORITY_SHORTLIST: "bg-emerald-400",
-  SHORTLIST: "bg-blue-400",
+  SHORTLIST: "bg-navy-400",
   HOLD: "bg-amber-400",
-  DECLINE_QUEUE: "bg-zinc-300",
+  DECLINE_QUEUE: "bg-stone-300",
 };
 
 export function StatTiles({ stats }: { stats: Stats }) {
@@ -14,9 +14,9 @@ export function StatTiles({ stats }: { stats: Stats }) {
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_1.4fr]">
       <div className="rounded-3xl bg-white p-6 shadow-sm">
-        <p className="text-sm text-zinc-500">Total resumes</p>
-        <p className="mt-1 text-4xl font-semibold tracking-tight text-zinc-900">{stats.total}</p>
-        <div className="mt-6 flex h-2.5 w-full overflow-hidden rounded-full bg-zinc-100">
+        <p className="text-sm text-stone-500">Total resumes</p>
+        <p className="mt-1 text-4xl font-semibold tracking-tight text-navy-950">{stats.total}</p>
+        <div className="mt-6 flex h-2.5 w-full overflow-hidden rounded-full bg-stone-100">
           {BAND_ORDER.map((b) => {
             const count = stats.bandCounts[b] ?? 0;
             if (count === 0) return null;
@@ -30,7 +30,7 @@ export function StatTiles({ stats }: { stats: Stats }) {
             );
           })}
         </div>
-        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-500">
+        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-stone-500">
           {BAND_ORDER.map((b) => (
             <span key={b} className="flex items-center gap-1.5">
               <span className={`h-2 w-2 rounded-full ${BAND_BAR_COLOR[b]}`} />
@@ -41,9 +41,9 @@ export function StatTiles({ stats }: { stats: Stats }) {
       </div>
 
       <div className="grid grid-cols-3 gap-4">
-        <AssetTile label="Sent to interview" value={stats.advanced} tint="bg-violet-100 text-violet-900" dot="bg-violet-500" />
-        <AssetTile label="Rejected" value={stats.declined} tint="bg-rose-100 text-rose-900" dot="bg-rose-500" />
-        <AssetTile label="Pending review" value={stats.pending} tint="bg-emerald-100 text-emerald-900" dot="bg-emerald-500" />
+        <AssetTile label="Sent to interview" value={stats.advanced} tint="bg-emerald-50 text-emerald-900" dot="bg-emerald-500" />
+        <AssetTile label="Rejected" value={stats.declined} tint="bg-rose-50 text-rose-900" dot="bg-rose-500" />
+        <AssetTile label="Pending review" value={stats.pending} tint="bg-amber-50 text-amber-900" dot="bg-amber-500" />
       </div>
     </div>
   );

@@ -79,19 +79,19 @@ export function UploadPanel({
   }
 
   return (
-    <div className="rounded-lg border border-zinc-200 bg-white p-4">
+    <div className="rounded-3xl border border-stone-200 bg-white p-5">
       <div className="flex items-center gap-3 mb-3">
         {fixedRole ? (
-          <label className="text-sm font-medium text-zinc-700">
+          <label className="text-sm font-medium text-navy-900">
             Upload CVs for {fixedRole === "pm" ? "Product Manager" : "Senior Product Manager"}:
           </label>
         ) : (
           <>
-            <label className="text-sm font-medium text-zinc-700">Role for this batch:</label>
+            <label className="text-sm font-medium text-navy-900">Role for this batch:</label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value as RoleApplied)}
-              className="rounded border border-zinc-300 px-2 py-1 text-sm"
+              className="rounded border border-stone-300 px-2 py-1 text-sm"
               disabled={busy}
             >
               <option value="pm">Product Manager</option>
@@ -119,7 +119,7 @@ export function UploadPanel({
                     ? "text-green-600"
                     : s.stage === "error"
                     ? "text-red-600"
-                    : "text-zinc-500"
+                    : "text-stone-500"
                 }
               >
                 {s.stage}

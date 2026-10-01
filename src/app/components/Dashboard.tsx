@@ -70,21 +70,21 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-100">
+    <div className="min-h-screen bg-stone-100">
       {config && (
-        <div className="bg-zinc-900 px-4 py-2 text-left text-xs text-zinc-100">
-          Email mode: <strong>{config.emailMode.toUpperCase()}</strong>
+        <div className="bg-navy-950 px-4 py-2 text-left text-xs text-navy-100">
+          Email mode: <strong className="text-amber-400">{config.emailMode.toUpperCase()}</strong>
           {config.emailMode === "dry" && (
             <>
               {" "}
-              — all sends go to <code className="rounded bg-zinc-700 px-1">{config.testRecipient}</code>
+              — all sends go to <code className="rounded bg-navy-800 px-1 text-amber-200">{config.testRecipient}</code>
             </>
           )}
         </div>
       )}
 
       <div className="mx-auto max-w-6xl px-4 py-6 space-y-5">
-        <h1 className="text-2xl font-semibold text-zinc-900">Kargo Hiring Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-navy-950">Kargo Hiring Dashboard</h1>
 
         <div className="flex gap-2 rounded-2xl bg-white p-1.5 shadow-sm w-fit">
           {(
@@ -98,7 +98,7 @@ export default function Dashboard() {
               key={t.key}
               onClick={() => setTab(t.key)}
               className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
-                tab === t.key ? "bg-zinc-900 text-white" : "text-zinc-500 hover:bg-zinc-100"
+                tab === t.key ? "bg-navy-900 text-white" : "text-stone-500 hover:bg-stone-100"
               }`}
             >
               {t.label}
@@ -134,15 +134,15 @@ function DashboardTab({
 }) {
   return (
     <div className="space-y-5">
-      <p className="text-sm text-zinc-500">
+      <p className="text-sm text-stone-500">
         An overview of every resume in the pipeline across both roles — how many are shortlisted, on hold,
         declined, or already sent to interview.
       </p>
       {stats && <StatTiles stats={stats} />}
       {previouslyContacted.length > 0 && (
         <div className="rounded-3xl bg-white p-5 text-sm shadow-sm">
-          <p className="mb-2 font-medium text-zinc-700">Previously contacted (informal replies before this dashboard)</p>
-          <ul className="space-y-0.5 text-zinc-500">
+          <p className="mb-2 font-medium text-navy-900">Previously contacted (informal replies before this dashboard)</p>
+          <ul className="space-y-0.5 text-stone-500">
             {previouslyContacted.map((p, i) => (
               <li key={i}>
                 {p.name} — {p.email} {p.note && `(${p.note})`}
@@ -199,14 +199,14 @@ function RoleTab({
       <UploadPanel fixedRole={role} onDone={onChanged} />
 
       <div className="rounded-3xl bg-white shadow-sm">
-        <div className="flex items-center justify-between border-b border-zinc-100 px-6 py-4">
-          <h2 className="text-sm font-semibold text-zinc-700">
+        <div className="flex items-center justify-between border-b border-stone-100 px-6 py-4">
+          <h2 className="text-sm font-semibold text-navy-900">
             Scored candidates — {role === "pm" ? "Product Manager" : "Senior Product Manager"} rubric
           </h2>
           <button
             onClick={onSendAllDeclines}
             disabled={batchSending}
-            className="rounded-xl bg-zinc-700 px-3 py-1.5 text-xs text-white disabled:opacity-50"
+            className="rounded-xl bg-navy-800 px-3 py-1.5 text-xs text-white hover:bg-navy-700 disabled:opacity-50"
           >
             {batchSending ? "Sending…" : "Send all queued declines"}
           </button>
