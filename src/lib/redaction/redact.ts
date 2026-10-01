@@ -66,12 +66,24 @@ function findEchoedName(text: string): string | null {
 }
 
 function firstLineGuess(text: string): string | null {
-  const firstLine = text
+  let firstLine = text
     .split("\n")
     .map((l) => l.trim())
     .find((l) => l.length > 0);
   if (!firstLine) return null;
-  // Reject lines that are clearly not a name (too long, contains digits/@ etc.)
+
+  // Many templates put the name and contact details on one line, e.g.
+  // "Kabir Mehta squad_2@pg27.mesaschool.co". Strip everything from the
+  // first email/phone-shaped token onward before judging whether what
+  // remains looks like a name — otherwise every such resume falls back to
+  // the same generic default and different candidates collide on it.
+  const cutMatch = firstLine.match(/[a-zA-Z0-9._%+-]+@|\+?\d[\d\s().-]{7,}/);
+  if (cutMatch && cutMatch.index !== undefined) {
+    firstLine = firstLine.slice(0, cutMatch.index).trim();
+  }
+  if (!firstLine) return null;
+
+  // Reject what's left if it's still clearly not a name (too long, stray digits/@/url).
   if (firstLine.length > 60 || /[@\d]/.test(firstLine)) return null;
   return firstLine;
 }
