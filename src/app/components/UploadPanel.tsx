@@ -11,8 +11,14 @@ interface FileStatus {
   error?: string;
 }
 
-export function UploadPanel({ onDone }: { onDone: () => void }) {
-  const [role, setRole] = useState<RoleApplied>("pm");
+export function UploadPanel({
+  onDone,
+  fixedRole,
+}: {
+  onDone: () => void;
+  fixedRole?: RoleApplied;
+}) {
+  const [role, setRole] = useState<RoleApplied>(fixedRole ?? "pm");
   const [statuses, setStatuses] = useState<FileStatus[]>([]);
   const [busy, setBusy] = useState(false);
 
@@ -75,16 +81,24 @@ export function UploadPanel({ onDone }: { onDone: () => void }) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white p-4">
       <div className="flex items-center gap-3 mb-3">
-        <label className="text-sm font-medium text-zinc-700">Role for this batch:</label>
-        <select
-          value={role}
-          onChange={(e) => setRole(e.target.value as RoleApplied)}
-          className="rounded border border-zinc-300 px-2 py-1 text-sm"
-          disabled={busy}
-        >
-          <option value="pm">Product Manager</option>
-          <option value="spm">Senior Product Manager</option>
-        </select>
+        {fixedRole ? (
+          <label className="text-sm font-medium text-zinc-700">
+            Upload CVs for {fixedRole === "pm" ? "Product Manager" : "Senior Product Manager"}:
+          </label>
+        ) : (
+          <>
+            <label className="text-sm font-medium text-zinc-700">Role for this batch:</label>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value as RoleApplied)}
+              className="rounded border border-zinc-300 px-2 py-1 text-sm"
+              disabled={busy}
+            >
+              <option value="pm">Product Manager</option>
+              <option value="spm">Senior Product Manager</option>
+            </select>
+          </>
+        )}
         <input
           type="file"
           multiple
