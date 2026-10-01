@@ -70,20 +70,25 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-100">
-      {config && (
-        <div className="bg-navy-950 px-4 py-2 text-left text-xs text-navy-100">
-          Email mode: <strong className="text-amber-400">{config.emailMode.toUpperCase()}</strong>
-          {config.emailMode === "dry" && (
-            <>
-              {" "}
-              — all sends go to <code className="rounded bg-navy-800 px-1 text-amber-200">{config.testRecipient}</code>
-            </>
-          )}
-        </div>
-      )}
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-navy-100 via-stone-100 to-amber-50">
+      <div className="pointer-events-none absolute -top-32 -right-24 h-96 w-96 rounded-full bg-amber-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute top-1/3 -left-32 h-96 w-96 rounded-full bg-navy-300/30 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-navy-200/30 blur-3xl" />
 
-      <div className="mx-auto max-w-6xl px-4 py-6 space-y-5">
+      <div className="relative">
+        {config && (
+          <div className="bg-navy-950 px-4 py-2 text-left text-xs text-navy-100">
+            Email mode: <strong className="text-amber-400">{config.emailMode.toUpperCase()}</strong>
+            {config.emailMode === "dry" && (
+              <>
+                {" "}
+                — all sends go to <code className="rounded bg-navy-800 px-1 text-amber-200">{config.testRecipient}</code>
+              </>
+            )}
+          </div>
+        )}
+
+        <div className="mx-auto max-w-6xl px-4 py-6 space-y-5">
         <h1 className="text-2xl font-semibold text-navy-950">Kargo Hiring Dashboard</h1>
 
         <div className="flex gap-2 rounded-2xl bg-white p-1.5 shadow-sm w-fit">
@@ -119,6 +124,7 @@ export default function Dashboard() {
             batchSending={batchSending}
           />
         )}
+        </div>
       </div>
     </div>
   );
