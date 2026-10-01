@@ -1,0 +1,423 @@
+================================================================================
+KARGO HIRING RUBRIC  -  PRODUCT MANAGER & SENIOR PRODUCT MANAGER
+Version 1.0  |  28 Sept 2026  |  Built from 8 past-hire CVs + 2 JDs
+================================================================================
+
+PURPOSE
+Rank applicants by how closely they resemble Kargo's Exceeds-rated hires, not
+by how many JD keywords they contain. JD matching has run for 11 weeks and
+produced zero offers. The JD describes the role. It does not predict who will
+succeed in it.
+
+THE ONE RULE
+The rubric scores and recommends. Arjun decides. No candidate is rejected by
+the rubric alone. Low scorers go into a decline queue that Arjun approves in
+a single batch, and every applicant hears back.
+
+SCORING ORDER
+Gates -> 5 scored criteria -> Hidden-value notes -> Probes -> Band
+
+
+--------------------------------------------------------------------------------
+SECTION 1  -  WHAT THE PAST HIRES ACTUALLY SHOW
+--------------------------------------------------------------------------------
+
+Name                 Role                 Rating     P1   P2   P3
+-------------------  -------------------  ---------  ---  ---  ---
+Rohan Desai          Head of Engineering  Exceeds    Yes  Yes  Yes
+Sunita Krishnamurthy Operations Lead      Exceeds    Yes  Yes  Yes
+Aditya Shetty        Sales Lead           Exceeds    Yes  Yes  Yes
+Meghna Tiwari        Customer Success Mgr Exceeds    Yes  Yes  Yes
+Lavanya Iyer         Product Manager      Exceeds    Yes  Yes  Yes
+Vikram Nair          Product Manager      Meets      No   Part No
+Rahul Bose           Growth & Marketing   Meets      No   Part No
+Preetham Rao         Backend Engineer     Below      Weak Part Yes
+
+PATTERN 1  -  LIVED THE CUSTOMER'S JOB            [Strongest signal: 5/5 vs 0/3]
+Every Exceeds hire did hands-on freight, port, customs or 3PL work before
+moving into their current function. They are operators who became builders.
+  - Rohan: 3 yrs Operations Executive at a CHA firm, JNPT (180+ shipments/mo)
+  - Sunita: 4 yrs freight documentation & customs compliance
+  - Aditya: port services sales at JNPT, worked alongside terminal ops; Maersk
+  - Meghna: 2.5 yrs freight documentation & client coordination
+  - Lavanya: 3 yrs carrier ops & supply chain planning at a national 3PL
+None of the Meets/Below hires did this. Preetham integrated with 3PL APIs
+from a desk, which is adjacent but not the same thing.
+Why it's not in the JDs: the PM JD asks for "curiosity" about operations; the
+SPM JD calls familiarity an "advantage." Neither asks for having DONE the job.
+The data says having done it is the single clearest separator.
+
+PATTERN 2  -  STAYED WITH A LIVE FIRE AND PUT IT OUT   [Strong: 5/5 vs 1/3]
+Every Exceeds hire has a specific story of personally resolving a live
+operational crisis under time pressure, often followed by a system fix.
+  - Rohan: vendor migration under time pressure, no data loss; PG fix same day
+  - Sunita: rebuilt intake workflow over a weekend when FMS vendor changed
+    format without notice; two customs inspections closed with no penalties
+  - Aditya: won 3 competitor accounts during a port congestion incident
+  - Meghna: resolved a customs hold overnight before the client knew
+  - Lavanya: owned a 4-hour outage post-mortem, internal + customer versions
+Vikram and Rahul: no such story. Preetham: yes (P1 on-call, coupon bug), which
+is why this pattern alone is not enough.
+Why it matters for Kargo: customers run live operations inside the product.
+Why it's not in the JDs: the JDs talk about ambiguity and decisions, not about
+handling a live operational failure.
+
+PATTERN 3  -  BUILT SOMETHING NOBODY ASKED FOR, AND OTHERS ADOPTED IT
+                                         [Weakest: 5/5 vs partial in all 3]
+  - Rohan: Excel tracker adopted by 12-person team in 2 weeks; weekend B/L
+    prototype with 30 users in a month
+  - Sunita: SOPs adopted in full within 60 days; workflow retained permanently
+  - Aditya: loss post-mortem became standard qualification practice
+  - Meghna: onboarding checklist + 30-60-90 framework became team standard
+  - Lavanya: dashboard (Excel -> Tableau) adopted by 2 other regional teams
+The difference from Meets hires is WHO adopted it. Exceeds hires' tools were
+picked up by people who didn't have to (peers, other teams, clients). Vikram's
+PRD template was adopted by his own PM team; Rahul's builds were his job.
+Treat this as a tie-breaker-weight signal, not a headline one.
+
+WHAT DID NOT SEPARATE GOOD FROM AVERAGE
+  - JD fit. Vikram is the textbook JD match (XLRI MBA, B2B SaaS PM, shipped 12
+    features, $180K ARR) and rated Meets. Lavanya had 2 years of PM experience
+    and rated Exceeds.
+  - Credentials and brand: Product School, Reforge, speaking slots, MBA school.
+  - Company logos and size of past employer on their own.
+  - Business-metric headlines (ARR, pipeline, adoption %) without a named
+    user problem behind them.
+
+LIMITS OF THIS ANALYSIS  (read before trusting any score)
+  [Certain] 8 hires, only 2 of them PMs. Patterns are drawn across functions.
+  [Certain] Built from CVs only. The hire profiles with interview notes and
+            outcome notes described in the brief were not provided.
+  [Certain] Calibration in Section 10 is in-sample: the patterns were drawn
+            from these 8 people, so of course they fit. It shows consistency,
+            not predictive power.
+  [Likely]  Lavanya (Apr 2025) and Rahul (Jun 2025) were rated on short
+            tenure. Their ratings are less stable than the others'.
+  [Certain] No past hire was at SPM level. The SPM version of Criterion 4 is
+            JD-derived and unvalidated.
+
+
+--------------------------------------------------------------------------------
+SECTION 2  -  GATES  (pass / flag / fail. Not scored.)
+--------------------------------------------------------------------------------
+
+G1  EXPERIENCE FLOOR  (per role, not a flat 3-year rule)
+  PM:   >= 2 years in a role where they owned product outcomes
+        (PM, sole product owner, or founding-team product work).
+        Near-miss FLAG (not fail): 1-2 yrs PM + >= 2 yrs hands-on ops (C1 >= 3).
+  SPM:  >= 5 years PM, with at least one area owned without a senior PM
+        above them making the calls.
+        Near-miss FLAG: 3-5 yrs PM + C1 >= 3 + C2 >= 3 -> route to PM rubric.
+  Upper end: do not auto-fail over-experienced candidates. Flag "possibly
+  over-levelled" and let Arjun decide.
+  Why not 3 years flat: the PM JD itself says 2-4 years, and a 3-year PM
+  floor would have rejected Lavanya.
+
+G2  LOCATION  (in-office Mumbai, relocation OK per JD)
+  Never infer from the CV. A Bengaluru address is not a "no." Mark
+  "CONFIRM IN FIRST REPLY" and move on. Does not affect score.
+
+G3  ROLE ROUTING
+  SPM applicants who fail G1 but score high on C1-C3 -> rescore on PM rubric.
+  PM applicants with 5+ yrs PM and C4-SPM evidence -> also score on SPM.
+  Report both scores; Arjun picks.
+
+
+--------------------------------------------------------------------------------
+SECTION 3  -  SCORED CRITERIA  (each 0-4, weighted to 100)
+--------------------------------------------------------------------------------
+
+Criterion                                   Weight   Source
+------------------------------------------  ------   ---------------------
+C1  Lived the customer's job                  25     Pattern 1
+C2  Live-fire ownership                       20     Pattern 2
+C3  Unprompted build, adopted by others       15     Pattern 3
+C4  Role capability (PM or SPM variant)       25     JD
+C5  Low-structure operating record            15     Derived company fit
+                                             ----
+                                              100
+
+FORMULA:  Total = sum over criteria of (score / 4) x weight
+
+Patterns carry 60 points, the JD carries 25, fit carries 15. That split is
+deliberate. If you raise C4 above 30 you are rebuilding the process that
+has failed for 11 weeks.
+
+...............................................................................
+C1  LIVED THE CUSTOMER'S JOB  (25)
+...............................................................................
+Question: Has this person done the work Kargo's users do, with their own hands?
+
+  0  No exposure to operations-heavy work.
+  1  Adjacent from a desk: built, sold or integrated software for logistics
+     or ops-heavy industries without doing the operational work.
+  2  Hands-on ops in an adjacent industry (manufacturing, e-com fulfilment,
+     field ops, warehousing) OR < 1 yr hands-on freight/logistics ops.
+  3  1-3 yrs hands-on in freight forwarding, 3PL, port, customs or
+     documentation; or deep commercial work embedded with ops teams.
+  4  2+ yrs doing the forwarder/3PL job itself (documentation, carrier
+     coordination, customs, exceptions) AND then carried it into a builder or
+     functional role.
+
+  Look for: B/L, SI, CoO, shipping bills, CHA, customs holds, DGFT, ICEGATE,
+  CargoWise, carrier allocation, NDR, detention, berth windows, DO release,
+  exception triage, shipments-per-month volumes.
+  Does NOT count: "logistics" in an employer's name; tool names in a skills
+  list with no role behind them; "domain knowledge" claims without a job.
+
+  Probe: "Walk me through a bad morning in that job. What broke first, and
+  what did you do before 10am?"
+
+...............................................................................
+C2  LIVE-FIRE OWNERSHIP  (20)
+...............................................................................
+Question: When something broke in real time, did they personally fix it?
+
+  0  No incident described.
+  1  Mentions on-call, escalations or "fast-paced environment," no instance.
+  2  A specific incident; they were part of the team response.
+  3  A specific incident they personally drove to resolution under time
+     pressure, with a stated outcome.
+  4  Multiple such incidents, OR one where they also changed the system so it
+     did not recur (post-mortem owned, process redesigned, monitoring added).
+
+  Probe: "Tell me about the worst thing that broke on your watch. What did you
+  do in the first hour? What did you change afterwards?"
+
+...............................................................................
+C3  UNPROMPTED BUILD, ADOPTED BY OTHERS  (15)
+...............................................................................
+Question: Did they build something nobody asked for, that others chose to use?
+
+  0  None.
+  1  Improved something inside their assigned scope.
+  2  Built a tool/process beyond scope; adoption only by own team or unstated.
+  3  Built unprompted; adopted by people who didn't have to (peers, other
+     teams, clients), with evidence ("became standard," numbers, timeline).
+  4  Multiple instances, or one that became company- or client-wide standard.
+     Bonus signal: started scrappy (Excel, weekend prototype) and upgraded as
+     usage grew.
+
+  Probe: "Who asked you to build that? How did the second team end up
+  using it?"
+
+...............................................................................
+C4  ROLE CAPABILITY  (25)  -  score the variant for the role being assessed
+...............................................................................
+
+C4-PM  (from PM JD: first PM, ship + kill in short cycles, build the rhythms)
+  0  No product ownership evidence.
+  1  Product-adjacent: APM or analyst who wrote specs for someone else's
+     decisions.
+  2  Owned features end-to-end in a structured org; shipped, but no evidence
+     of killing or redirecting work, and no process built from scratch.
+  3  Owned a product area; shipped multiple features with usage evidence;
+     at least one kill/pivot based on data OR built a PM rhythm from nothing.
+  4  Sole or first PM on an area at early stage; shipped AND killed in short
+     cycles on usage data; discovery done with operators, ideally on-site;
+     built the rhythms (prioritisation, templates, post-mortems).
+  Key test: did users adopt features unprompted? That is Kargo's 6-month
+  success metric. Mandated rollouts and "adoption %" with no baseline are weak.
+
+  Probe: "What's something you shipped that users found without being told?
+  What's something you killed, and what data made you kill it?"
+
+C4-SPM  (from SPM JD: integration/data layer, build vs configure vs avoid)
+  0  No PM ownership, or only UI-level features with no integration/data work.
+  1  PM experience, always under a senior PM layer; no platform scope.
+  2  Owned an area with some integration/API exposure (partner integrations,
+     API docs) but no architectural calls.
+  3  Owned an integration, platform or data area; clear build/configure/avoid
+     decisions; worked with sales on integration-driven deals.
+  4  All of 3, at an early stage with no committee above them; decisions with
+     multi-year consequences they lived with; an integration that opened a
+     segment or unblocked a deal; shaped how other PMs work.
+  NOTE: unvalidated against past hires. Weight the probe answers heavily.
+
+  Probe: "Name an integration you decided NOT to build. What did you do
+  instead, and were you right 18 months later?"
+
+...............................................................................
+C5  LOW-STRUCTURE OPERATING RECORD  (15)  -  the "company fit" criterion
+...............................................................................
+Fit here means one thing only: evidence of doing good work where no structure
+existed. It does NOT mean personality, background, or "would I get a beer
+with them." Score behaviour, not employer size.
+
+  0  All achievements inside layered orgs, framed as "part of" a team.
+  1  Owned discrete pieces inside an established process.
+  2  Growth-stage or small team; some ownership, but operating within
+     processes others built.
+  3  Sole owner of an area; reported to a founder/CEO or had no layer above;
+     or ran independently (consulting, own book of business).
+  4  Built something from zero with no template (first in role, created the
+     function or process others now use) and says so plainly.
+
+  Probe: "What did you have to build on day one because nothing existed?
+  Who did you go to when you were stuck, and what if there was no one?"
+
+
+--------------------------------------------------------------------------------
+SECTION 4  -  HIDDEN VALUE  (required field, not scored)
+--------------------------------------------------------------------------------
+Things the JDs don't ask for but that would help Kargo. The scorer must list
+any that appear, with the CV line that shows it. Arjun uses these to break
+ties and to decide what to probe.
+
+  - Regulatory/compliance fluency: DGFT, ICEGATE, customs EDI, RoDTEP, IATA DGR,
+    CDSCO, WHO-GMP. Reduces documentation-workflow design risk.
+  - Existing relationships: CHAs, shipping lines, terminal operators, carriers,
+    forwarder ops teams. Shortens discovery and on-site access.
+  - Led a customer off paper, Excel or WhatsApp onto software. This is
+    literally Kargo's product motion.
+  - Wrote customer-facing incident comms or post-mortems.
+  - Wrote API or integration documentation (especially relevant for SPM).
+  - Ran a "loss post-mortem" or killed their own work, documented why.
+  - Worked on both sides of the table (ops user AND software builder/seller).
+  - Onboarding or implementation experience at freight/3PL clients.
+  - Mentored someone who was later promoted (with timeline).
+  - Carrier/vendor performance scorecards or rate renegotiation from data.
+
+
+--------------------------------------------------------------------------------
+SECTION 5  -  WHAT NOT TO REWARD
+--------------------------------------------------------------------------------
+Neutral (neither add nor subtract):
+  - Certifications and courses (Product School, Reforge, etc.)
+  - Conference talks, communities, awards without a stated basis
+  - School, MBA or employer brand
+  - Tool lists (JIRA, Figma, Mixpanel) with no work attached
+
+Caution flags (don't penalise, but mark for probe):
+  - Every achievement is team-level ("part of," "contributed to") with no
+    personal verb. Some people write modestly; probe before concluding.
+  - Metrics with no baseline, time window, or named user problem.
+  - "Managed stakeholders" with no decision they made.
+  - Only large-company tenure AND no instance of acting outside process.
+
+
+--------------------------------------------------------------------------------
+SECTION 6  -  FAIRNESS RULES  (non-negotiable)
+--------------------------------------------------------------------------------
+Never score, mention, or let influence a score:
+  - Name, gender, age, date of birth, photo, marital status, religion, caste
+  - College or school name (only degree field, if relevant)
+  - Current city (relocation is confirmed by asking, not inferred)
+  - Employment gaps (ask, don't assume)
+  - Family business connections (score the WORK done there, not the family)
+Risk to watch: Pattern 1 could narrow the pool to people from Mumbai port
+networks. C1 score 2 exists so that strong operators from other industries
+are not zeroed out. Review the gender and background mix of each shortlist
+before Arjun sees it.
+
+
+--------------------------------------------------------------------------------
+SECTION 7  -  EVIDENCE RULES FOR THE SCORER (AI or human)
+--------------------------------------------------------------------------------
+  1. Every score must quote the CV line it rests on. No quote -> score 0 and
+     write "no evidence in CV." Never infer experience that isn't written.
+  2. Tag each score's confidence: H (explicit, specific, quantified),
+     M (explicit but vague), L (implied).
+  3. "I built / owned / led" outranks "part of / supported / contributed."
+  4. Specific > general. "Resolved a customs hold overnight" beats
+     "strong problem-solver."
+  5. Do not reward keyword density. Five mentions of "freight" is one fact.
+  6. Score each criterion independently. Don't let a high C1 inflate C3.
+  7. When unsure between two scores, pick the lower and add a probe.
+
+
+--------------------------------------------------------------------------------
+SECTION 8  -  BANDS AND TIE-BREAKERS
+--------------------------------------------------------------------------------
+Bands are [Guessing]. Retune after the first full pass of 60 applications.
+
+  80-100  PRIORITY SHORTLIST  Arjun sees first
+  60-79   SHORTLIST
+  45-59   HOLD                Shown only if a role's shortlist has < 5 names
+  < 45    DECLINE QUEUE       Arjun batch-approves; courteous decline sent
+  Gate fail (not near-miss)   DECLINE QUEUE with the reason stated
+
+Tie-breakers, in order: higher C1 -> higher C2 -> more Hidden Value items ->
+more recent hands-on ops exposure.
+
+Known tradeoff: this rubric would have declined Vikram (a Meets hire). That
+is intentional; it is tuned to find Exceeds hires, not acceptable ones. If the
+PM shortlist comes back with fewer than 3 names, lower the HOLD floor to 30
+before touching the weights.
+
+
+--------------------------------------------------------------------------------
+SECTION 9  -  PER-CANDIDATE OUTPUT TEMPLATE
+--------------------------------------------------------------------------------
+CANDIDATE:
+ROLE APPLIED:            PM / SPM        ROUTED TO:  PM / SPM / both
+GATES:  G1 pass|flag|fail - reason     G2 confirm relocation: Y/N/unknown
+SCORES:
+  C1 Lived the job        _/4  (H/M/L)  "quote"
+  C2 Live-fire ownership  _/4  (H/M/L)  "quote"
+  C3 Unprompted build     _/4  (H/M/L)  "quote"
+  C4 Role capability      _/4  (H/M/L)  "quote"
+  C5 Low-structure record _/4  (H/M/L)  "quote"
+TOTAL:  __/100          BAND:
+WHY RANKED HERE:  two plain sentences Arjun can read in 20 seconds
+HIDDEN VALUE:     bullets with the CV line for each
+TOP 3 PROBES:     tied to the lowest or lowest-confidence criteria
+RISKS:            what could make this a Meets/Below hire
+
+
+--------------------------------------------------------------------------------
+SECTION 10  -  CALIBRATION CHECK  (past hires scored on this rubric)
+--------------------------------------------------------------------------------
+Role-agnostic criteria only (C1, C2, C3, C5; max 75), because the 8 hires
+were in different roles.
+
+Name       C1  C2  C3  C5   Score/75   Rating
+---------  --  --  --  --   --------   -------
+Rohan       4   4   4   4     75.0     Exceeds
+Sunita      4   4   4   4     75.0     Exceeds
+Meghna      4   4   4   3     71.3     Exceeds
+Lavanya     4   3   4   4     70.0     Exceeds
+Aditya      3   3   3   4     60.0     Exceeds
+Preetham    1   3   2   1     32.5     Below
+Rahul       0   0   2   3     18.8     Meets
+Vikram      0   0   2   1     11.3     Meets
+
+The two PMs with C4-PM added (full score out of 100):
+  Lavanya  C4 = 4  ->  95   PRIORITY SHORTLIST
+  Vikram   C4 = 3  ->  30   DECLINE QUEUE
+Note the JD criterion alone barely separates them (25 vs 18.75). The patterns
+create the gap.
+
+What this shows:
+  - Clean separation of Exceeds (60-75) from everyone else (11-33).
+  - FAILURE: it ranks Preetham (Below) above Vikram and Rahul (Meets). The
+    rubric cannot tell Meets from Below. Whatever went wrong with Preetham is
+    not visible on his CV. The interview and outcome notes are needed to
+    find it.
+  - This is in-sample. It proves the rubric is consistent with the history,
+    not that it predicts the future.
+
+
+--------------------------------------------------------------------------------
+SECTION 11  -  HOW TO VALIDATE AND WHEN TO CHANGE THIS
+--------------------------------------------------------------------------------
+Before first use:
+  1. Blind-score the 19 already-opened applications. Have Arjun rank the same
+     19 on instinct without seeing scores. Review every case where the two
+     disagree by more than one band. Each disagreement either finds a rubric
+     gap or an instinct bias; both are worth knowing.
+  2. Add the interview and outcome notes from the hires/ folder and
+     re-derive the patterns. Specifically look for what Preetham's notes
+     reveal.
+
+Change the rubric if:
+  - A shortlisted candidate interviews badly for a reason the rubric should
+    have caught -> add or re-anchor a criterion.
+  - Shortlists come back homogeneous (same city, same background) -> check
+    C1 and the fairness review.
+  - After 6 months, compare new hires' ratings to their rubric scores. That
+    is the first real test of predictive power.
+
+Do NOT change the weights because a single candidate "feels" wrong. That is
+the gut-feel process this replaces.
+================================================================================
